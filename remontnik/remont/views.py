@@ -2,11 +2,17 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
+
+from django.template.context import RequestContext
 
 
 # Главная страница приложения
 def index(request):
-    return HttpResponse(u"Главная страница Remontnik.by")
+    top10 = {'top10 masters': 'top10 masters should be displayed here'}
+    context = RequestContext(request, top10)
+    template = loader.get_template('remont/index.html')
+    return HttpResponse(template.render(context))
 
 
 # Регистрация пользователя
