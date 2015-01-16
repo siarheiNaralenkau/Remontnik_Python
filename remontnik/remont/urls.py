@@ -5,4 +5,5 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^register/$', views.register, name='register'),
     url(r'^(?P<user_id>\d+)/profile/$', views.profile, name='profile'),
+    url(r'^create_user/$', views.create_user, name='create_user'),
 )
