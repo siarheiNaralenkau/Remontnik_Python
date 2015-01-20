@@ -29,9 +29,9 @@ class WorkType(models.Model):
 
 class UserProfile(models.Model):
     REG_TYPE_CHOICES = (
-        ('client', u'Заказчик'),
-        ('master', u'Исполнитель'),
-        ('seller', u'Продавец'),
+        (u'client', u'Заказчик'),
+        (u'master', u'Исполнитель'),
+        (u'seller', u'Продавец'),
     )
 
     class Meta:
@@ -41,6 +41,35 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     reg_type = models.CharField(u"Вид регистрации", choices=REG_TYPE_CHOICES, default='client', max_length=20)
     phone = models.CharField(u"Контактный телефон", max_length=25)
+
+
+class MasterProfile(UserProfile):
+    MASTER_TYPE_CHOICES = (
+        (u'one', u'Работаю один'),
+        (u'2-3', u'Бригада 2-3 человека'),
+        (u'4-10', u'Бригада 4-10 человек'),
+        (u'>10', u'Бригада более 10 человек'),
+        (u'company', u'Компания')
+    )
+
+    CITY_CHOICES = (
+        (u'Брест', u'Брест'),
+        (u'Витебск', u'Витебск'),
+        (u'Гомель', u'Гомель'),
+        (u'Гродно', u'Гродно'),
+        (u'Минск', u'Минск'),
+        (u'Могилев', u'Могилев'),
+    )
+
+    master_type = models.CharField(max_length=40, choices=MASTER_TYPE_CHOICES)
+    work_types = models.ManyToManyField(WorkType)
+    work_location = models.CharField(max_length=30, choices=CITY_CHOICES)
+    last_visit = models.DateTimeField()
+
+
+class WorkPhoto(models.Model):
+    photo = models.ImageField()
+    master = models.ForeignKey(MasterProfile)
 
 
 

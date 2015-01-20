@@ -1,1 +1,32 @@
-<a href="/remont/register">Регистрация</a>/<a href="/login">Вход</a>
+{% load staticfiles %}
+
+<div class="top" style="position: absolute; left: 0; top: 0; width: 100%; height: 120px; background-color: #cccccc; border: 1px solid black">
+    <div style="display: inline-block; margin-left: 20px; margin-top: 20px; border: 1px solid black">
+        <img src="{% static "remont/logo.jpg" %}" alt="Логотип" style="width: 120px; height: 90px"/>
+    </div>
+    <div style="display: inline-block; border: 1px solid black; margin-left: auto; margin-right: auto; position: absolute; width: 400px">
+        Banner
+    </div>
+    <div style="display: inline-block; border: 1px solid black; float: right; margin-top: 10px; margin-right: 20px">
+        <a href="../remont/register"><span style="font-size: 20px; font-weight: bold">Регистрация</span></a>/
+        <a href="/login"><span style="font-size: 20px; font-weight: bold">Вход</span></a>
+    </div>
+</div>
+
+{#<div class="top10">#}
+{#    Top 10 masters or companies, ordered by rating#}
+{#</div>#}
+{#<div class="menu">#}
+{#    <a href="/remont/job_catalog">Каталог работ</a>#}
+{#    <a href="/remont/goods_catalog">Каталог товаров</a>#}
+{#    <a href="/remont/useful_articles">Полезные статьи</a>#}
+{#</div>#}
+{#<div class="how site works">#}
+{#    Видео "Как работает сайт"#}
+{#</div>#}
+{#<div class="suggest_job">#}
+{#    <a href="/remont/suggest_job">Предложить работу</a>#}
+{#</div>#}
+{#<div class="jobs_list">#}
+{#    Список недавних заявок на работу#}
+{#</div>#}
