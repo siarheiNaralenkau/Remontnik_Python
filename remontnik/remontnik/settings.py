@@ -28,8 +28,6 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 ALLOWED_HOSTS = []
 
-STATIC_URL = '/static/'
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -61,9 +59,18 @@ WSGI_APPLICATION = 'remontnik.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'remontnik',
+        'ENGINE': 'mysql.connector.django',
+        'USER': 'remontnik',
+        'PASSWORD': 'rem2015BEL',
+        'OPTIONS': {
+            'autocommit': True,
+        },
     }
 }
 
