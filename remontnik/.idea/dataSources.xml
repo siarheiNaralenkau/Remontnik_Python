@@ -4,9 +4,8 @@
     <data-source source="LOCAL" name="Django default" uuid="7b26f528-2abb-4bdd-ba41-4336add75169">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\MyDevelopment\Remontnik.by\Remontnik_Python\remontnik\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1/remontnik</jdbc-url>
       <libraries />
     </data-source>
   </component>
 </project>
-
