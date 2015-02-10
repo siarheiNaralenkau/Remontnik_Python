@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 # Главная страница приложения
-from remont.models import WorkType, JobSuggestion
+from remont.models import WorkType, JobSuggestion, UserProfile
 
 
 def index(request):
@@ -48,23 +48,32 @@ def suggest_job_save(request):
     job = JobSuggestion(contact_name=contact_person, job_type=job_type, description=description,
                         phone=phone, email=mail, short_header=header)
     job.save()
-    # return render(request, "remont/index.html", {})
     return redirect("/remont")
+
 
 # Регистрация нового пользователя
 def create_user(request):
-    print "Creating new user..."
     reg_type = request.REQUEST["reg_type"]
     contact_name = request.REQUEST["contact_name"]
     email = request.REQUEST["email"]
     phone = request.REQUEST["phone"]
     password = email
-    user = User.objects.create_superuser(email, email, password)
-    user.first_name = contact_name
-    user.save()
-    print "New user was successfully created"
+    auth_user = User.objects.create_user(email, email, password)
+    user_profile = UserProfile(user_id=auth_user.id, contact_name=contact_name, reg_type=reg_type, phone=phone)
+    user_profile.save()
+    request.session['user_id'] = user_profile.id
+    return redirect("/remont/user_profile")
 
-    # TODO redirect to user profile page for editting additional data...
+
+def user_profile(request):
+    profile_data = {}
+    if "user_id" in request.session:
+        u_profile = UserProfile.objects.get(id=request.session["user_id"])
+        profile_data["user_profile"] = u_profile
+        return render(request, "remont/user_profile.html", profile_data)
+
+def update_user_profile(request):
+    return redirect("/remont/user_profile")
 
 
 

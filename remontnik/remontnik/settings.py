@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -28,7 +30,13 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 ALLOWED_HOSTS = []
 
-
+platform = sys.platform
+if sys.platform.startswith("win"):
+    MEDIA_ROOT = "c:/MyDevelopment/MediaStorage"
+elif sys.platform.startswith("linux"):
+    MEDIA_ROOT = "/home/media/remontnik"
+else:
+    MEDIA_ROOT = "/home/media"
 # Application definition
 
 INSTALLED_APPS = (
